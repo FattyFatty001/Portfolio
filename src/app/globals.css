@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/*
+ * NOTE: Do not add an unlayered `* { margin:0; padding:0 }` reset here.
+ * Tailwind v4's Preflight already resets margin and box-sizing in the
+ * `base` layer, so utilities like `px-6`/`mb-8` override it correctly.
+ * An unlayered reset wins over all layered utilities and silently
+ * disables every spacing utility site-wide.
+ */
+
+@theme {
+    /* Light, friendly palette — semantic tokens */
+    --color-ink: #fbf7f0; /* page background (warm paper) */
+    --color-ink-soft: #ffffff; /* cards / surfaces */
+    --color-bone: #241f1a; /* primary text (warm near-black) */
+    --color-bone-dim: #79706a; /* secondary text */
+    --color-line: rgba(36, 31, 26, 0.12);
+    --color-accent: #ff5d4d; /* primary accent (warm coral) */
+    --color-signal: #1fb87a; /* "available" green */
+
+    /* Playful accent palette */
+    --color-coral: #ff6b5e;
+    --color-sun: #ffb43d;
+    --color-grass: #2bb673;
+    --color-sky: #3a9ef5;
+    --color-grape: #7c5cff;
+    --color-bubble: #ff7eb6;
+
+    --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-display-serif), Georgia, serif;
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Lenis controls scrolling; disable native smooth-scroll */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+    overflow: clip;
+}
+
+body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+    background: var(--color-accent);
+    color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(36, 31, 26, 0.2);
+    border-radius: 99px;
+}
+
+@layer utilities {
+    /* Fluid display type that scales with the viewport */
+    .text-fluid-xl {
+        font-size: clamp(2.8rem, 11vw, 12rem);
+        line-height: 0.92;
+        letter-spacing: -0.03em;
+    }
+    .text-fluid-lg {
+        font-size: clamp(2rem, 7vw, 5.5rem);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+    }
+    .text-fluid-md {
+        font-size: clamp(1.5rem, 4vw, 3rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+    }
+
+    .mask-line {
+        overflow: hidden;
+        display: block;
+        /* Room for descenders (g, y, p) without changing line spacing */
+        padding-bottom: 0.18em;
+        margin-bottom: -0.18em;
+    }
+
+    .cursor-dot.is-active {
+        width: 2.6rem;
+        height: 2.6rem;
+        background-color: transparent;
+        border: 1.5px solid var(--color-accent);
+    }
+
+    /* Soft colorful background wash */
+    .canvas::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+            radial-gradient(
+                36rem 36rem at 8% 4%,
+                rgba(124, 92, 255, 0.13),
+                transparent 60%
+            ),
+            radial-gradient(
+                34rem 34rem at 94% 12%,
+                rgba(255, 180, 61, 0.18),
+                transparent 60%
+            ),
+            radial-gradient(
+                42rem 42rem at 82% 86%,
+                rgba(58, 158, 245, 0.13),
+                transparent 62%
+            ),
+            radial-gradient(
+                30rem 30rem at 6% 92%,
+                rgba(43, 182, 115, 0.13),
+                transparent 60%
+            );
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+    }
+}
