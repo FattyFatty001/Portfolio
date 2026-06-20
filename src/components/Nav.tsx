@@ -41,19 +41,6 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-
-        <div className="flex items-center gap-4">
-          <span className="hidden items-center gap-2 rounded-full bg-grass/12 px-3 py-1.5 text-xs font-medium text-grass md:flex">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-grass" />
-            Available
-          </span>
-          <a
-            href="#contact"
-            className="rounded-full bg-bone px-5 py-2.5 text-sm font-medium text-ink transition-transform duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5"
-          >
-            Let&rsquo;s talk
-          </a>
-        </div>
       </nav>
     </header>
   );

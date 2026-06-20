@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Montage</title>
+        <style>
+            :root {
+                /* ---------- Tunable knobs ---------- */
+                --tile-w: 360px; /* width of each tile */
+                --tile-aspect: 16 / 9; /* tile aspect ratio  */
+                --gap: 7px; /* gutter between tiles */
+                --gap-color: #e7e8ec; /* gutter colour (light) */
+                --bg: #08080b; /* stage / behind-montage colour */
+
+                --rotZ: -10deg; /* in-plane tilt */
+                --scale: 1.36; /* overfill so edges bleed */
+                --shiftY: -6px; /* vertical recentre */
+                --col-stagger: 30px; /* diagonal offset per column */
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                width: 1920px;
+                height: 600px;
+                overflow: hidden;
+                background: var(--bg);
+            }
+
+            .stage {
+                position: relative;
+                width: 1920px;
+                height: 600px;
+                background: var(--bg);
+                overflow: hidden;
+            }
+
+            .grid {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: flex;
+                gap: var(--gap);
+                padding: var(--gap);
+                background: var(--gap-color);
+                transform-origin: center center;
+                /* 2D-only transform (headless screenshot can't rasterise a
+                   3D perspective layer). For live viewing you can prepend
+                   perspective()/rotateX() for extra depth. */
+                transform: translate(-50%, -50%) translateY(var(--shiftY))
+                    rotate(var(--rotZ)) scale(var(--scale));
+            }
+
+            .col {
+                display: flex;
+                flex-direction: column;
+                gap: var(--gap);
+            }
+
+            .tile {
+                width: var(--tile-w);
+                aspect-ratio: var(--tile-aspect);
+                background: #16161b;
+                overflow: hidden;
+                flex: 0 0 auto;
+            }
+            .tile img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            /* ---------- Dark edge fades / vignette ---------- */
+            .overlay {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+            }
+            .overlay.bottom {
+                background: linear-gradient(
+                    to top,
+                    var(--bg) 0%,
+                    var(--bg) 8%,
+                    rgba(8, 8, 11, 0.7) 24%,
+                    rgba(8, 8, 11, 0) 52%
+                );
+            }
+            .overlay.top {
+                background: linear-gradient(
+                    to bottom,
+                    var(--bg) 0%,
+                    rgba(8, 8, 11, 0.55) 9%,
+                    rgba(8, 8, 11, 0) 30%
+                );
+            }
+            .overlay.sides {
+                background: linear-gradient(
+                    to right,
+                    var(--bg) 0%,
+                    rgba(8, 8, 11, 0) 16%,
+                    rgba(8, 8, 11, 0) 84%,
+                    var(--bg) 100%
+                );
+            }
+            .overlay.vignette {
+                background: radial-gradient(
+                    120% 130% at 50% 42%,
+                    rgba(8, 8, 11, 0) 52%,
+                    rgba(8, 8, 11, 0.55) 100%
+                );
+            }
+        </style>
+    </head>
+    <body>
+        <div class="stage">
+            <div class="grid" id="grid"></div>
+            <div class="overlay vignette"></div>
+            <div class="overlay sides"></div>
+            <div class="overlay top"></div>
+            <div class="overlay bottom"></div>
+        </div>
+
+        <script>
+            const DIR = "./thumbs/gemini/";
+            const toThumb = (f) => DIR + f.replace(/\.[^.]+$/, ".jpg");
+            // Curated set (duplicates / tiny variants removed).
+            const FILES = [
+                "1ghoLF5z7qtLGKfPJ8vFwfIUeI.webp",
+                "2bp8YW2ZLiVTmn7rH8VHUpSFw.webp",
+                "3M6vgf4Y8YbZTRfgR2LWFJKc7hE.webp",
+                "4KGTsvZn1DSKYv96n8b906c2bM.webp",
+                "5ugvAfsp5GIxUoA6m7yswtmjw.webp",
+                "7CFq45eGeu6OTD5W1rLzZ8COHo.webp",
+                "7LyXj1uZyvv9156DtUi7tLDwDQ.webp",
+                "A46mJYdiJqktCv9omm4bkUM.webp",
+                "Clean_GeminiImage-1024x377.jpeg",
+                "Cover-2048x1156.png",
+                "EMSKtVQ45jx7m723oAXMVqn9hcw.webp",
+                "EpWkUqf08D914UnSi6FKcD0W0.webp",
+                "FfLdAgWMeJdZ3vHqXSyJ9pjmbI.webp",
+                "FtyFYo4gRhPOM8ETZctufkGZjM.webp",
+                "Fx0cHgzuvqwm9NMsUr28zdkKE.webp",
+                "InnZpod5lnpo9JFsjDTu45BKIP4.webp",
+                "LnACKD2DeQJsEiTCblTL6Q.webp",
+                "OsJOnRBTWuAhlPZtNpBhOdNWuU.webp",
+                "Oyqd5Ct5pEEBnqNfVvqkItlQubE.webp",
+                "PiI0o6S05t3FFIJ9cWjp6sJiU.webp",
+                "RxKSMm06aCQygogMOZzAfU7US4A.webp",
+                "SEcwj9IvX8TP7tBwUnIFLqnWIZE.webp",
+                "SVeSRvRUMHwdWRQjx84hCYZl84.webp",
+                "TFmTc3dACXDC2OUZFnSwW9fuRU.webp",
+                "TU8JsVxlQ435Dqm2tRLKbX2hOW0.webp",
+                "U5gxTFcoZW957OzUn27RbcuYfek.webp",
+                "XT0zD8wEoZ0yMlWPsMyA1G2dAc-1920x1083.jpg",
+                "ZDiOTmvO9R6hiJD3vRbv2Ays.webp",
+                "ZLRh0Wkyy5kn7Kkx2DYz0ZeQRuU.webp",
+                "ZaBFMvEod9mjBrS3sYzhq2zhIB0.webp",
+                "cvtUsdaUiQV4F48FjjTUo6ZxOQ.webp",
+                "fB4jiT2gyboQZKKPTYDleyLqwp0.webp",
+                "h61FO5xHIlwNSHrUpVRIcS1r7Y.webp",
+                "hEkn9PjWEoQj6oSbheiWZxKqeYk.webp",
+                "iGzBWxT17ytto11XguZIx0dw20-1920x1083.jpg",
+                "ia9yFeNPq2vh0YO8mvk0o363s.webp",
+                "nvKHHFKnb1jZ9PdUTYXHpevD9Oc.webp",
+                "pKjuuXsic7ZAsX3QbtPFbM0oZ58.webp",
+                "pkHrUYrNdEYhKjGKKSgDzKaE4.webp",
+                "r6bfuQYgk1g0lNDRTvAIQuLNU.webp",
+                "tok2mH2HNFBT51xApfl5dreI.webp",
+                "utwRCQfDVfrdeyOheo4LjA1Ylo-scaled.webp",
+                "xEzbUSWea6iTtUo0GBJEHO55wkM.webp",
+                "z4HvjjvMneAaeJ5IahOQKehWIQQ.webp",
+            ];
+
+            const COLS = 6;
+            const STAGGER = parseInt(
+                getComputedStyle(document.documentElement).getPropertyValue(
+                    "--col-stagger",
+                ),
+            );
+
+            // Preload to learn orientation, keep landscape-ish only.
+            function load(src) {
+                return new Promise((res) => {
+                    const im = new Image();
+                    im.onload = () =>
+                        res({
+                            src,
+                            w: im.naturalWidth,
+                            h: im.naturalHeight,
+                            ok: true,
+                        });
+                    im.onerror = () => res({ src, ok: false });
+                    im.src = src;
+                });
+            }
+
+            (async () => {
+                const metas = await Promise.all(
+                    FILES.map((f) => load(toThumb(f))),
+                );
+                const usable = metas.filter((m) => m.ok && m.w / m.h >= 1.2); // landscape only
+                // shuffle deterministically for a varied but repeatable layout
+                let seed = 7;
+                const rnd = () =>
+                    (seed = (seed * 1103515245 + 12345) & 0x7fffffff) /
+                    0x7fffffff;
+                usable.sort(() => rnd() - 0.5);
+
+                const grid = document.getElementById("grid");
+                const cols = Array.from({ length: COLS }, (_, i) => {
+                    const c = document.createElement("div");
+                    c.className = "col";
+                    // linear diagonal stagger (each column steps down a little)
+                    const mid = (COLS - 1) / 2;
+                    c.style.marginTop = (i - mid) * STAGGER + "px";
+                    grid.appendChild(c);
+                    return c;
+                });
+
+                // Manual position swaps applied after layout, as [[colA,rowA],[colB,rowB]].
+                const SWAPS = [
+                    [
+                        [3, 3],
+                        [4, 3],
+                    ], // right-of-centre tile <-> its right neighbour
+                ];
+
+                // Fill each column with enough tiles to overflow vertically (cycle images).
+                const TILES_PER_COL = 7;
+                let k = 0;
+                for (let r = 0; r < TILES_PER_COL; r++) {
+                    for (let ci = 0; ci < COLS; ci++) {
+                        const meta = usable[k % usable.length];
+                        k++;
+                        const tile = document.createElement("div");
+                        tile.className = "tile";
+                        const img = document.createElement("img");
+                        img.src = meta.src;
+                        tile.appendChild(img);
+                        cols[ci].appendChild(tile);
+                    }
+                }
+
+                // Apply manual swaps by grid position.
+                for (const [[c1, r1], [c2, r2]] of SWAPS) {
+                    const a = cols[c1]?.children[r1]?.querySelector("img");
+                    const b = cols[c2]?.children[r2]?.querySelector("img");
+                    if (a && b) {
+                        const tmp = a.src;
+                        a.src = b.src;
+                        b.src = tmp;
+                    }
+                }
+
+                // signal readiness
+                window.__ready = { usable: usable.length, total: FILES.length };
+                document.body.setAttribute("data-ready", "1");
+            })();
+        </script>
+    </body>
+</html>

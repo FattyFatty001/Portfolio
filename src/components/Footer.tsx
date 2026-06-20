@@ -16,19 +16,6 @@ export default function Footer() {
           <span className="h-2.5 w-2.5 rounded-full bg-accent" />
           Contact
         </p>
-        <h2 className="text-fluid-xl font-semibold">
-          <span className="mask-line">
-            <span data-reveal className="inline-block">
-              Let&rsquo;s build
-            </span>
-          </span>
-          <span className="mask-line">
-            <span data-reveal className="inline-block">
-              something{" "}
-              <span className="font-display italic text-accent">great</span>
-            </span>
-          </span>
-        </h2>
 
         <div className="mt-12 flex flex-col gap-5">
           <a

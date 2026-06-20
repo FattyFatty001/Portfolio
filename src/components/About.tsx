@@ -45,7 +45,7 @@ export default function About() {
           <div className="absolute -inset-3 rotate-6 rounded-[2.2rem] bg-sun/30" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/portrait.webp"
+            src="/portrait-warm.webp"
             alt="Matt Pearson"
             className="relative aspect-square w-full rounded-[1.9rem] object-cover shadow-lg"
           />
@@ -56,7 +56,7 @@ export default function About() {
             <span className="h-2.5 w-2.5 rounded-full bg-accent" />
             About
           </p>
-          <p className="text-fluid-md font-medium leading-snug">
+          <p className="text-fluid-sm font-medium">
             {statement.split(" ").map((word, i) => (
               <span key={i} data-word className="inline-block">
                 {word}&nbsp;

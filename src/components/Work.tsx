@@ -10,7 +10,7 @@ export default function Work() {
     <section
       id="work"
       ref={containerRef}
-      className="relative px-6 py-24 md:px-12 md:py-32"
+      className="relative mx-auto max-w-[1600px] px-6 py-24 md:px-12 md:py-32"
     >
       <div className="mb-14 flex flex-col gap-4 md:mb-20 md:flex-row md:items-end md:justify-between">
         <h2 className="text-fluid-lg font-semibold">
@@ -46,18 +46,33 @@ export default function Work() {
               <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:gap-12 md:p-12">
                 {/* Cover */}
                 <div className={`relative ${flip ? "md:order-2" : ""}`}>
+                  {/* Soft color bloom anchoring the cover to the tile */}
                   <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-8 rounded-full opacity-40 blur-3xl"
+                    className="pointer-events-none absolute inset-6 rounded-full opacity-40 blur-3xl"
                     style={{ backgroundColor: project.color }}
                   />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={project.image}
-                    alt={`${project.title} — ${project.client}`}
-                    loading="lazy"
-                    className="relative mx-auto aspect-square w-full max-w-sm rounded-3xl object-cover shadow-[0_30px_70px_-25px_rgba(36,31,26,0.55)] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-2 group-hover:rotate-1"
-                  />
+
+                  {/* Stacked frames cradle the image into the design */}
+                  <div className="relative mx-auto w-full max-w-sm">
+                    <div
+                      aria-hidden
+                      className="absolute -inset-2.5 -rotate-3 rounded-[2rem] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-rotate-[5deg]"
+                      style={{ backgroundColor: `${project.color}26` }}
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute -inset-2.5 rotate-2 rounded-[2rem] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[4deg]"
+                      style={{ backgroundColor: `${project.color}1a` }}
+                    />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={project.image}
+                      alt={`${project.title} — ${project.client}`}
+                      loading="lazy"
+                      className="relative aspect-square w-full rounded-[1.7rem] object-cover shadow-[0_30px_70px_-25px_rgba(36,31,26,0.55)] ring-1 ring-white/60 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-translate-y-2"
+                    />
+                  </div>
                 </div>
 
                 {/* Detail */}
@@ -70,7 +85,7 @@ export default function Work() {
                     {project.id} · {project.client}
                   </span>
 
-                  <p className="mt-5 text-3xl font-semibold lowercase leading-[1.06] tracking-tight md:text-[2.6rem]">
+                  <p className="mt-5 text-3xl font-semibold leading-[1.06] tracking-tight md:text-[2.6rem]">
                     {project.headline}
                   </p>
 
@@ -92,13 +107,11 @@ export default function Work() {
                   <div className="mt-8 flex flex-wrap items-center gap-5">
                     <a
                       href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
                       data-cursor
                       className="inline-flex items-center gap-2 rounded-full bg-bone px-5 py-2.5 text-sm font-semibold text-ink transition-transform duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5"
                     >
                       View UI work
-                      <span aria-hidden>↗</span>
+                      <span aria-hidden>→</span>
                     </a>
                     {project.caseStudy && (
                       <a

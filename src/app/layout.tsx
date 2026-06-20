@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Instrument_Serif } from "next/font/google";
+import { Manrope, Fraunces } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 
-const grotesk = Space_Grotesk({
+const grotesk = Manrope({
   subsets: ["latin"],
   variable: "--font-grotesk",
   display: "swap",
 });
 
-const serif = Instrument_Serif({
+const serif = Fraunces({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-display-serif",
   display: "swap",

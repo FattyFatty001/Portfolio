@@ -79,8 +79,8 @@ body {
 @layer utilities {
     /* Fluid display type that scales with the viewport */
     .text-fluid-xl {
-        font-size: clamp(2.8rem, 11vw, 12rem);
-        line-height: 0.92;
+        font-size: clamp(2.8rem, 9vw, 9rem);
+        line-height: 0.95;
         letter-spacing: -0.03em;
     }
     .text-fluid-lg {
@@ -92,6 +92,11 @@ body {
         font-size: clamp(1.5rem, 4vw, 3rem);
         line-height: 1.05;
         letter-spacing: -0.02em;
+    }
+    .text-fluid-sm {
+        font-size: clamp(1.25rem, 3vw, 2.25rem);
+        line-height: 1.45;
+        letter-spacing: -0.01em;
     }
 
     .mask-line {
