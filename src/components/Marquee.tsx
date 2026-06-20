@@ -3,16 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { services } from "@/lib/projects";
-
-const palette = [
-  "#ff6b5e",
-  "#ffb43d",
-  "#2bb673",
-  "#3a9ef5",
-  "#7c5cff",
-  "#ff7eb6",
-];
+import { projects } from "@/lib/projects";
 
 export default function Marquee() {
   const track = useRef<HTMLDivElement>(null);
@@ -45,24 +36,31 @@ export default function Marquee() {
     return () => ctx.revert();
   }, []);
 
-  const items = [...services, ...services];
+  const items = [...projects, ...projects];
 
   return (
     <section
       aria-hidden
       className="relative overflow-hidden border-y border-line py-5"
     >
-      <div ref={track} className="flex w-max whitespace-nowrap">
-        {items.map((item, i) => (
+      <div ref={track} className="flex w-max items-center">
+        {items.map((project, i) => (
           <span
             key={i}
-            className="mx-6 inline-flex items-center gap-4 text-2xl font-medium md:text-3xl"
+            className="mx-4 inline-flex shrink-0 items-center"
           >
             <span
-              className="h-3 w-3 shrink-0 rounded-full"
-              style={{ backgroundColor: palette[i % palette.length] }}
-            />
-            {item}
+              className="relative block h-28 w-44 overflow-hidden rounded-2xl ring-1 ring-white/60 md:h-36 md:w-56"
+              style={{ backgroundColor: `${project.color}14` }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.image}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </span>
           </span>
         ))}
       </div>
