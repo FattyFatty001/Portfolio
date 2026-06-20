@@ -34,13 +34,13 @@ export default function Work() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-8 md:gap-12">
+      <div className="flex flex-col gap-16 md:gap-24">
         {projects.map((project, i) => {
           const flip = i % 2 === 1;
           return (
             <article
               key={project.id}
-              className="group relative overflow-hidden rounded-[2rem] border border-line md:rounded-[2.75rem]"
+              className="group relative rounded-[2rem] border border-line md:rounded-[2.75rem]"
               style={{ backgroundColor: `${project.color}14` }}
             >
               <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:gap-12 md:p-12">
@@ -54,7 +54,11 @@ export default function Work() {
                   />
 
                   {/* Stacked frames cradle the image into the design */}
-                  <div className="relative mx-auto w-full max-w-sm">
+                  <div
+                    className={`relative mx-auto w-full max-w-md -my-6 transition-transform duration-700 ease-[var(--ease-out-expo)] md:-my-14 ${
+                      flip ? "md:-rotate-2" : "md:rotate-2"
+                    }`}
+                  >
                     <div
                       aria-hidden
                       className="absolute -inset-2.5 -rotate-3 rounded-[2rem] transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:-rotate-[5deg]"
@@ -85,7 +89,7 @@ export default function Work() {
                     {project.id} · {project.client}
                   </span>
 
-                  <p className="mt-5 text-3xl font-semibold leading-[1.06] tracking-tight md:text-[2.6rem]">
+                  <p className="mt-5 text-4xl font-semibold leading-[1.06] tracking-tight md:text-[3.2rem]">
                     {project.headline}
                   </p>
 

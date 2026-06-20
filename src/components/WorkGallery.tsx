@@ -89,7 +89,7 @@ export default function WorkGallery({ images, title, color }: Props) {
 
       <div
         ref={gridRef}
-        className="columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5"
+        className="columns-1 gap-6 sm:columns-2 lg:columns-2 [&>*]:mb-6"
       >
         {images.map((src, i) => (
           <button
@@ -97,7 +97,7 @@ export default function WorkGallery({ images, title, color }: Props) {
             data-tile
             data-cursor
             onClick={() => setOpen(i)}
-            style={{ transitionDelay: `${(i % 3) * 70}ms` }}
+            style={{ transitionDelay: `${(i % 2) * 70}ms` }}
             className="group block w-full overflow-hidden rounded-2xl border border-line bg-ink-soft text-left shadow-[0_18px_45px_-30px_rgba(36,31,26,0.5)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
