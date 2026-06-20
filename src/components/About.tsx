@@ -38,7 +38,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={root} className="px-6 py-24 md:px-12 md:py-36">
+    <section id="about" ref={root} className="px-6 pt-40 pb-24 md:px-12 md:pt-56 md:pb-36">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
         <div className="relative mx-auto w-56 shrink-0 md:w-72">
           <div className="absolute -inset-3 -rotate-6 rounded-[2.2rem] bg-grape/20" />

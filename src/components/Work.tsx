@@ -112,7 +112,11 @@ export default function Work() {
                     <a
                       href={project.href}
                       data-cursor
-                      className="inline-flex items-center gap-2 rounded-full bg-bone px-5 py-2.5 text-sm font-semibold text-ink transition-transform duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5"
+                      className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_-10px_var(--btn-color)] transition-transform duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5"
+                      style={{
+                        backgroundColor: project.color,
+                        ["--btn-color" as string]: project.color,
+                      }}
                     >
                       View UI work
                       <span aria-hidden>→</span>

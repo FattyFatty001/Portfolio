@@ -11,8 +11,12 @@ export default function Home() {
       <Nav />
       <main className="relative z-10">
         <Hero />
-        <Marquee />
-        <Work />
+        <div className="relative pb-16 md:pb-28">
+          <Marquee angle={10} top="22%" />
+          <Marquee angle={-10} reverse top="66%" />
+          <Work />
+        </div>
+        <Marquee inline color angle={0} />
         <About />
         <Footer />
       </main>
