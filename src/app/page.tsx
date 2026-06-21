@@ -13,7 +13,8 @@ export default function Home() {
         <Hero />
         <div className="relative pb-16 md:pb-28">
           <Marquee angle={10} top="22%" reverse />
-          <Marquee angle={-10} top="66%" />
+          <Marquee angle={-10} top="52%" />
+          <Marquee angle={10} top="82%" reverse />
           <Work />
         </div>
         <Marquee inline color angle={0} size="smplus" saturate={0} reverse />

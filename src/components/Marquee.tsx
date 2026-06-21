@@ -122,17 +122,10 @@ export default function Marquee({
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-      style={{
-        // Visible toward the screen edges, fading to ~20% through a wide center band.
-        WebkitMaskImage:
-          "linear-gradient(to right, black, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.3) 80%, black)",
-        maskImage:
-          "linear-gradient(to right, black, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.3) 80%, black)",
-      }}
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
       <div
-        className="absolute left-1/2 w-[200%] opacity-[0.1]"
+        className="absolute left-1/2 w-[200%] opacity-[0.05]"
         style={{ top, transform: `translate(-50%, -50%) rotate(${angle}deg)` }}
       >
         {row}

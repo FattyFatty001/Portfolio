@@ -40,7 +40,7 @@ export default function Work() {
           return (
             <article
               key={project.id}
-              className="group relative rounded-[2rem] border border-line md:rounded-[2.75rem]"
+              className="group relative rounded-[2rem] border border-line backdrop-blur-[6px] md:rounded-[2.75rem]"
               style={{ backgroundColor: `${project.color}14` }}
             >
               <div className="grid items-center gap-8 p-6 md:grid-cols-2 md:gap-12 md:p-12">
