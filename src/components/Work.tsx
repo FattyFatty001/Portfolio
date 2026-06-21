@@ -97,17 +97,6 @@ export default function Work() {
                     {project.title} · {project.role}
                   </p>
 
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.discipline.map((d) => (
-                      <span
-                        key={d}
-                        className="rounded-full border border-line px-3 py-1 text-xs font-medium text-bone-dim"
-                      >
-                        {d}
-                      </span>
-                    ))}
-                  </div>
-
                   <div className="mt-8 flex flex-wrap items-center gap-5">
                     <a
                       href={project.href}
