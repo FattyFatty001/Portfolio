@@ -178,13 +178,16 @@ export default async function WorkPage({
               {project.caseStudy && (
                 <a
                   href={project.caseStudy}
-                  target="_blank"
-                  rel="noreferrer"
+                  {...(project.caseStudy.startsWith("/")
+                    ? {}
+                    : { target: "_blank", rel: "noreferrer" })}
                   data-cursor
                   className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/40"
                 >
                   Read case study
-                  <span aria-hidden>↗</span>
+                  <span aria-hidden>
+                    {project.caseStudy.startsWith("/") ? "→" : "↗"}
+                  </span>
                 </a>
               )}
               <a
