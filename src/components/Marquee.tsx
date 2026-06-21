@@ -87,7 +87,7 @@ export default function Marquee({
           className={`group mx-3 inline-flex shrink-0 transition duration-500 ease-out ${
             color ? "hover:scale-[1.08]" : ""
           }`}
-          style={color ? { "--saturate-base": String(saturate) } : undefined}
+          style={color ? ({ "--saturate-base": String(saturate) } as React.CSSProperties) : undefined}
         >
           <span
             className={`relative block overflow-hidden rounded-xl ${sizeClass[size]}`}
