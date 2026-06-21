@@ -29,6 +29,8 @@ type MarqueeProps = {
   saturate?: number;
   // Cover size.
   size?: keyof typeof sizeClass;
+  // Optional color tint applied as a subtle wash over the marquee.
+  tint?: string;
 };
 
 export default function Marquee({
@@ -39,6 +41,7 @@ export default function Marquee({
   color = false,
   saturate = 1,
   size = inline ? "md" : "lg",
+  tint,
 }: MarqueeProps) {
   const track = useRef<HTMLDivElement>(null);
 
@@ -87,7 +90,7 @@ export default function Marquee({
           style={color ? { "--saturate-base": String(saturate) } : undefined}
         >
           <span
-            className={`block overflow-hidden rounded-xl ${sizeClass[size]}`}
+            className={`relative block overflow-hidden rounded-xl ${sizeClass[size]}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -100,6 +103,17 @@ export default function Marquee({
                   : "grayscale"
               }`}
             />
+            {tint && (
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  backgroundColor: tint,
+                  mixBlendMode: "soft-light",
+                  opacity: 1,
+                }}
+              />
+            )}
           </span>
         </span>
       ))}
@@ -111,7 +125,11 @@ export default function Marquee({
     return (
       <div
         aria-hidden
-        className="relative w-full overflow-hidden border-y border-line py-8 md:py-10"
+        className="relative w-full overflow-hidden border-y py-8 md:py-10"
+        style={{
+          borderColor: tint ?? "var(--color-line)",
+          backgroundColor: tint ? `${tint}0d` : undefined,
+        }}
       >
         {row}
       </div>
