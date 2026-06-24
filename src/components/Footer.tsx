@@ -114,7 +114,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="relative mx-auto mt-16 flex max-w-6xl flex-col gap-3 text-sm font-medium text-bone-dim md:flex-row md:items-center md:justify-between">
-        <span>Matt Pearson — Game UI/UX Designer</span>
+        <span>Matt Pearson | Game UI/UX Designer</span>
         <span>Vancouver, CA · &copy; {new Date().getFullYear()}</span>
       </div>
     </footer>

@@ -26,11 +26,11 @@ const display = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "Matt Pearson — Game UI/UX Designer",
+  title: "Matt Pearson | Game UI/UX Designer",
   description:
     "UI/UX and experience designer with 15+ years leading game interface work from first sketch to final in-engine screen across AAA, indie, and live service.",
   openGraph: {
-    title: "Matt Pearson — Game UI/UX Designer",
+    title: "Matt Pearson | Game UI/UX Designer",
     description:
       "UI/UX and experience designer with 15+ years leading game interface work from first sketch to final in-engine screen across AAA, indie, and live service.",
     type: "website",

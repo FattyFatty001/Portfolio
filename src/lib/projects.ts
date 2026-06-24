@@ -30,7 +30,7 @@ export const projects: Project[] = [
     href: "/work/project-gemini/",
     caseStudy: "/work/project-gemini/case-study/",
     summary: "A selection of UI assets",
-    meta: { client: "People Can Fly", role: "UI/UX", timeline: "2021 – 2025" },
+    meta: { client: "People Can Fly", role: "UI/UX", timeline: "2021 to 2025" },
   },
   {
     id: "02",
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     href: "/work/plants-vs-zombies/",
     caseStudy: "/work/plants-vs-zombies/case-study/",
     summary: "A selection of UI assets",
-    meta: { client: "Visceral", role: "Senior UI Designer", timeline: "2012 – 2016" },
+    meta: { client: "Visceral", role: "Senior UI Designer", timeline: "2012 to 2016" },
   },
   {
     id: "03",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     image: "/work/outriders.jpg",
     href: "/work/outriders/",
     summary: "A selection of UI Assets",
-    meta: { client: "People Can Fly", role: "UI/UX", timeline: "2021 – 2025" },
+    meta: { client: "People Can Fly", role: "UI/UX", timeline: "2021 to 2025" },
   },
   {
     id: "04",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     image: "/work/ragtag.png",
     href: "/work/ragtag/",
     summary: "A selection of UI assets",
-    meta: { client: "Visceral", role: "Senior UI Designer", timeline: "2012 – 2016" },
+    meta: { client: "Visceral", role: "Senior UI Designer", timeline: "2012 to 2016" },
   },
   {
     id: "05",
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     href: "/work/vhs/",
     caseStudy: "/work/vhs/case-study/",
     summary: "A selection of UI Assets",
-    meta: { client: "Hellbent", role: "Principal UI/UX Designer", timeline: "2016 – 2020" },
+    meta: { client: "Hellbent", role: "Principal UI/UX Designer", timeline: "2016 to 2020" },
   },
   {
     id: "06",
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     image: "/work/misc.png",
     href: "/work/misc/",
     summary: "A selection of miscellaneous UI Assets",
-    meta: { client: "Multiple", role: "UI/UX", timeline: "2006 – 2025" },
+    meta: { client: "Multiple", role: "UI/UX", timeline: "2006 to 2025" },
   },
 ];
 

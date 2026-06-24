@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const statement =
-  "I believe the best game UI is invisible — it respects player time, deepens immersion, and makes complexity approachable. For 15+ years, across Dead Space, Battlefield, Plants vs. Zombies, Outriders and VHS, I've led interface work from first sketch to final in-engine screen — building for players and refining until it feels effortless.";
+  "I believe the best game UI is invisible. It respects player time, deepens immersion, and makes complexity approachable. For 15+ years, across Dead Space, Battlefield, Plants vs. Zombies, Outriders and VHS, I've led interface work from first sketch to final in-engine screen, building for players and refining until it feels effortless.";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
