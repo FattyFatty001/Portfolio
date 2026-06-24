@@ -9,25 +9,26 @@
  */
 
 @theme {
-    /* Light, friendly palette — semantic tokens */
-    --color-ink: #fbf7f0; /* page background (warm paper) */
-    --color-ink-soft: #ffffff; /* cards / surfaces */
-    --color-bone: #241f1a; /* primary text (warm near-black) */
-    --color-bone-dim: #79706a; /* secondary text */
-    --color-line: rgba(36, 31, 26, 0.12);
-    --color-accent: #ff5d4d; /* primary accent (warm coral) */
-    --color-signal: #1fb87a; /* "available" green */
+    /* OLIPOP-inspired palette — warm, playful, modern nostalgia */
+    --color-ink: #fff8f2; /* page background (warm cream) */
+    --color-ink-soft: #fffefb; /* cards / surfaces */
+    --color-bone: #3d2014; /* primary text (rich espresso) */
+    --color-bone-dim: #8c6e5e; /* secondary text (warm taupe) */
+    --color-line: rgba(61, 32, 20, 0.10);
+    --color-accent: #e8614d; /* primary accent (OLIPOP coral) */
+    --color-signal: #4bae4f; /* fresh green (crisp apple) */
 
-    /* Playful accent palette */
-    --color-coral: #ff6b5e;
-    --color-sun: #ffb43d;
-    --color-grass: #2bb673;
-    --color-sky: #3a9ef5;
-    --color-grape: #7c5cff;
-    --color-bubble: #ff7eb6;
+    /* Flavor-inspired accent palette */
+    --color-coral: #ff7b7b; /* strawberry vanilla pink */
+    --color-sun: #f4a73f;  /* tropical punch gold */
+    --color-grass: #6daf6d; /* crisp apple green */
+    --color-sky: #6baed6;  /* blueberry sky blue */
+    --color-grape: #8b6dbf; /* classic grape purple */
+    --color-bubble: #f0d58c; /* cream soda vanilla */
 
     --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
-    --font-display: var(--font-display-serif), Georgia, serif;
+    --font-display: var(--font-display), var(--font-grotesk), ui-rounded, system-ui, sans-serif;
+    --font-display-serif: var(--font-display-serif), Georgia, serif;
 
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -72,7 +73,7 @@ body {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(36, 31, 26, 0.2);
+    background: rgba(61, 32, 20, 0.18);
     border-radius: 99px;
 }
 
@@ -107,6 +108,20 @@ body {
         margin-bottom: -0.18em;
     }
 
+    /* OLIPOP-style pill badge with colored border */
+    .badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 9999px;
+        border-width: 2px;
+        padding: 0.375rem 0.875rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+    }
+
     .cursor-dot.is-active {
         width: 2.6rem;
         height: 2.6rem;
@@ -114,7 +129,7 @@ body {
         border: 1.5px solid var(--color-accent);
     }
 
-    /* Soft colorful background wash + subtle repeating texture */
+    /* Warm, playful OLIPOP-inspired background wash + subtle texture */
     .canvas::before {
         content: "";
         position: fixed;
@@ -122,26 +137,26 @@ body {
         z-index: 0;
         pointer-events: none;
         background:
-            /* Subtle dot pattern — repeats across the viewport */
-            url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='1' fill='%23241f1a' opacity='0.12'/%3E%3C/svg%3E"),
+            /* Subtle dot pattern — warm, soft texture */
+            url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='1' fill='%233d2014' opacity='0.08'/%3E%3C/svg%3E"),
             radial-gradient(
-                36rem 36rem at 8% 4%,
-                rgba(124, 92, 255, 0.13),
+                38rem 38rem at 10% 5%,
+                rgba(232, 97, 77, 0.10),
                 transparent 60%
             ),
             radial-gradient(
-                34rem 34rem at 94% 12%,
-                rgba(255, 180, 61, 0.18),
+                34rem 34rem at 90% 10%,
+                rgba(244, 167, 63, 0.12),
                 transparent 60%
             ),
             radial-gradient(
-                42rem 42rem at 82% 86%,
-                rgba(58, 158, 245, 0.13),
+                44rem 44rem at 85% 88%,
+                rgba(139, 109, 191, 0.10),
                 transparent 62%
             ),
             radial-gradient(
-                30rem 30rem at 6% 92%,
-                rgba(43, 182, 115, 0.13),
+                32rem 32rem at 5% 90%,
+                rgba(109, 175, 109, 0.10),
                 transparent 60%
             );
     }

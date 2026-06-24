@@ -28,7 +28,7 @@ function CaseFigure({
         type="button"
         data-cursor
         onClick={onOpen}
-        className="group block w-full overflow-hidden rounded-2xl border border-line bg-ink-soft text-left shadow-[0_18px_45px_-30px_rgba(36,31,26,0.5)]"
+        className="group block w-full overflow-hidden rounded-2xl border-2 border-line bg-ink-soft text-left shadow-[0_8px_30px_-15px_rgba(61,32,20,0.15)] transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[0_18px_50px_-15px_rgba(61,32,20,0.25)]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -146,7 +146,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
                 <header
                   key={i}
                   id={b.id}
-                  className="mt-20 scroll-mt-28 border-t border-line pt-14 first:mt-0 first:border-0 first:pt-0"
+                  className="mt-20 scroll-mt-28 border-t-2 border-line pt-14 first:mt-0 first:border-0 first:pt-0"
                 >
                   {b.eyebrow && (() => {
                     const m = b.eyebrow!.match(/^(.+?)\s*(\d+)$/);
@@ -171,7 +171,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
                     );
                   })()}
                   <h2
-                    className="mt-6 text-fluid-md font-semibold"
+                    className="mt-6 text-fluid-md font-bold"
                     style={b.eyebrow ? undefined : { color }}
                   >
                     {b.title}
@@ -183,7 +183,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
               return (
                 <h3
                   key={i}
-                  className={`${COL} mt-10 flex items-center gap-3 text-xl font-semibold md:text-2xl`}
+                  className={`${COL} mt-10 flex items-center gap-3 text-xl font-bold md:text-2xl`}
                 >
                   <span
                     aria-hidden
@@ -239,7 +239,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
                   {b.items.map((q, j) => (
                     <blockquote
                       key={j}
-                      className="rounded-2xl border border-line bg-ink-soft px-5 py-4"
+                      className="rounded-2xl border-2 border-line bg-ink-soft px-5 py-4"
                     >
                       <span
                         aria-hidden
@@ -258,7 +258,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
               return (
                 <blockquote
                   key={i}
-                  className={`${COL} border-l-2 pl-5`}
+                  className={`${COL} border-l-[3px] pl-5`}
                   style={{ borderColor: color }}
                 >
                   <p className="font-display text-xl italic text-bone md:text-2xl">
@@ -283,7 +283,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
                   {b.items.map((c, j) => (
                     <div
                       key={j}
-                      className="rounded-2xl border border-line bg-ink-soft p-5"
+                      className="rounded-2xl border-2 border-line bg-ink-soft p-5"
                     >
                       <p
                         className="text-sm font-semibold"
@@ -301,7 +301,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
               return (
                 <div
                   key={i}
-                  className={`${COL} rounded-2xl border border-line bg-ink-soft p-6 md:p-7`}
+                  className={`${COL} rounded-2xl border-2 border-line bg-ink-soft p-6 md:p-7`}
                 >
                   <div className="flex items-baseline gap-4">
                     <span
@@ -333,7 +333,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
                   )}
                   {b.quote && (
                     <blockquote
-                      className="mt-5 border-l-2 pl-4"
+                      className="mt-5 border-l-[3px] pl-4"
                       style={{ borderColor: color }}
                     >
                       <p className="font-display italic text-bone">{b.quote}</p>
@@ -401,7 +401,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
             onClick={close}
             data-cursor
             aria-label="Close"
-            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border border-line bg-ink-soft text-xl text-bone transition-colors hover:text-accent"
+            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border-2 border-line bg-ink-soft text-xl font-bold text-bone transition-all duration-300 hover:border-accent hover:text-accent"
           >
             ✕
           </button>
@@ -414,7 +414,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
               }}
               data-cursor
               aria-label="Previous"
-              className="absolute left-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-line bg-ink-soft text-2xl text-bone transition-colors hover:text-accent md:left-8"
+              className="absolute left-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border-2 border-line bg-ink-soft text-2xl font-bold text-bone transition-all duration-300 hover:border-accent hover:text-accent md:left-8"
             >
               ‹
             </button>
@@ -445,7 +445,7 @@ export default function CaseStudyBody({ blocks, color }: Props) {
               }}
               data-cursor
               aria-label="Next"
-              className="absolute right-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-line bg-ink-soft text-2xl text-bone transition-colors hover:text-accent md:right-8"
+              className="absolute right-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border-2 border-line bg-ink-soft text-2xl font-bold text-bone transition-all duration-300 hover:border-accent hover:text-accent md:right-8"
             >
               ›
             </button>

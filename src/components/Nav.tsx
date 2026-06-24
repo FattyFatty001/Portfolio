@@ -20,11 +20,11 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-ink/80 backdrop-blur-md" : "bg-transparent"
+        scrolled ? "bg-ink/85 backdrop-blur-lg shadow-sm" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-12">
-        <a href="#top" className="text-lg font-semibold tracking-tight">
+        <a href="#top" className="text-xl font-bold font-display tracking-tight">
           Matt Pearson<span className="text-accent">.</span>
         </a>
 
@@ -33,10 +33,10 @@ export default function Nav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="group relative text-sm font-medium text-bone-dim transition-colors hover:text-bone"
+                className="group relative text-sm font-semibold text-bone-dim transition-colors hover:text-bone"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-accent transition-all duration-300 ease-[var(--ease-out-expo)] group-hover:w-full" />
+                <span className="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-accent transition-all duration-300 ease-[var(--ease-out-expo)] group-hover:w-full" />
               </a>
             </li>
           ))}

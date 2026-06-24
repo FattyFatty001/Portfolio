@@ -3,34 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
-// ─── 20 emotionally expressive fonts for the "feel" word ─────────────────────
-const FEEL_FONTS = [
-  "Pacifico",
-  "Abril Fatface",
-  "Dancing Script",
-  "Lobster",
-  "Caveat",
-  "Permanent Marker",
-  "Cinzel Decorative",
-  "Sacramento",
-  "Satisfy",
-  "Bangers",
-  "Amatic SC",
-  "Great Vibes",
-  "Playfair Display",
-  "Righteous",
-  "Alfa Slab One",
-  "Kaushan Script",
-  "Reenie Beanie",
-  "Boogaloo",
-  "Leckerli One",
-  "Rubik Beastly",
+// ─── Platforms that cycle with their brand fonts + colors ──────────────────
+const PLATFORMS = [
+  { name: "Xbox",       color: "#107C10", font: "Share Tech Mono",   scale: 1,    spacing: 0.02 },
+  { name: "PlayStation", color: "#003087", font: "Orbitron",         scale: 0.9,  spacing: 0.06 },
+  { name: "Steam",       color: "#309ad9", font: "Rajdhani",          scale: 0.9,  spacing: 0.03 },
+  { name: "Unreal",      color: "#686868", font: "Audiowide",         scale: 0.92, spacing: 0.04 },
+  { name: "VR",          color: "#8B5CF6", font: "Orbitron",          scale: 0.9,    spacing: 0.08 },
+  { name: "Epic",        color: "#e255c8", font: "Barlow Condensed",  scale: 1.05, spacing: 0.05 },
+  { name: "Switch",      color: "#E60012", font: "Luckiest Guy",      scale: 0.8,  spacing: 0.02 },
+  { name: "Nintendo",    color: "#E60012", font: "Press Start 2P",    scale: 0.58, spacing: 0 },
+  { name: "iOS",      color: "#34A853", font: "Quicksand",         scale: 1,    spacing: 0.02 },
 ] as const;
 
 // Lazily inject a Google Fonts <link> (deduped by id)
 function loadFont(family: string) {
   if (typeof document === "undefined") return;
-  const id = `gf-feel-${family.replace(/\s+/g, "-").toLowerCase()}`;
+  const id = `gf-plat-${family.replace(/\s+/g, "-").toLowerCase()}`;
   if (document.getElementById(id)) return;
   const link = document.createElement("link");
   link.id = id;
@@ -41,21 +30,21 @@ function loadFont(family: string) {
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
-  const [feelIndex, setFeelIndex] = useState(0);
+  const [platformIndex, setPlatformIndex] = useState(0);
 
-  // Preload current + next 2 feel fonts
+  // Preload current + next 2 platform fonts
   useEffect(() => {
-    const n = FEEL_FONTS.length;
-    loadFont(FEEL_FONTS[feelIndex]);
-    loadFont(FEEL_FONTS[(feelIndex + 1) % n]);
-    loadFont(FEEL_FONTS[(feelIndex + 2) % n]);
-  }, [feelIndex]);
+    const n = PLATFORMS.length;
+    loadFont(PLATFORMS[platformIndex].font);
+    loadFont(PLATFORMS[(platformIndex + 1) % n].font);
+    loadFont(PLATFORMS[(platformIndex + 2) % n].font);
+  }, [platformIndex]);
 
   // Begin cycling after the hero entrance animation (~2 s)
   useEffect(() => {
     const t = setTimeout(() => {
       const iv = setInterval(
-        () => setFeelIndex((i) => (i + 1) % FEEL_FONTS.length),
+        () => setPlatformIndex((i) => (i + 1) % PLATFORMS.length),
         3000,
       );
       return () => clearInterval(iv);
@@ -78,14 +67,14 @@ export default function Hero() {
           "-=0.8",
         )
         .from("[data-hero-meta]", { opacity: 0, duration: 1 }, "-=0.6")
-        // Unlock overflow on the feel line so tall cycling fonts aren't clipped
-        .set("[data-feel-line]", { overflow: "visible" });
+        // Unlock overflow on the platform line so cycling text isn't clipped
+        .set("[data-platform-line]", { overflow: "visible" });
     }, root);
 
     return () => ctx.revert();
   }, []);
 
-  const currentFont = FEEL_FONTS[feelIndex];
+  const currentPlatform = PLATFORMS[platformIndex];
 
   return (
     <section
@@ -93,73 +82,54 @@ export default function Hero() {
       id="top"
       className="relative mx-auto flex min-h-screen w-full max-w-[1600px] flex-col justify-center px-6 pb-24 pt-36 md:px-12"
     >
-      {/* Animation keyframes — kept here to avoid the Turbopack/Windows PostCSS filter bug */}
+      {/* Animation keyframes — platform cycling blur-in */}
       <style>{`
-        @keyframes feel-in {
-          from { opacity: 0; filter: blur(10px); }
-          to   { opacity: 1; filter: blur(0px); }
+        @keyframes platform-in {
+          from { opacity: 0; filter: blur(8px); transform: translateY(0.15em); }
+          to   { opacity: 1; filter: blur(0px); transform: translateY(0); }
         }
-        .animate-feel-in {
-          animation: feel-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .animate-platform-in {
+          animation: platform-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `}</style>
 
       <p
         data-hero-fade
-        className="mb-8 inline-flex w-fit items-center gap-2.5 text-sm font-medium uppercase tracking-[0.16em] text-bone-dim"
+        className="mb-8 inline-flex w-fit items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.16em] text-bone-dim"
       >
         <span className="h-2.5 w-2.5 rounded-full bg-accent" />
         UI/UX &amp; Experience Designer · 15+ Years in Games
       </p>
 
-      <h1 className="text-fluid-xl font-semibold" style={{ lineHeight: 1.05 }}>
+      <h1 className="font-semibold font-display" style={{ lineHeight: 1.08, fontSize: "clamp(2.4rem, 8vw, 7rem)" }}>
         <span className="mask-line">
           <span data-hero-line className="inline-block">
-            Designing
+            Designing &amp; implementing
           </span>
         </span>
         <span className="mask-line">
           <span data-hero-line className="inline-block">
-            interfaces players
+            feel good interfaces
           </span>
         </span>
-        {/* data-feel-line lets GSAP switch overflow to visible after entrance */}
-        <span className="mask-line" data-feel-line>
+        {/* data-platform-line lets GSAP switch overflow to visible after entrance */}
+        <span className="mask-line" data-platform-line>
           <span data-hero-line className="inline-block">
-            {/* Fixed-width wrapper: sizer uses Fraunces so layout never shifts */}
-            <span className="relative mr-[0.4em] inline-block">
-              {/* Invisible sizer — determines the space "feel" always occupies */}
-              <span
-                className="invisible font-normal font-display italic"
-                aria-hidden
-              >
-                feel
-              </span>
-              {/* Cycling feel text — key remount triggers blur-in animation */}
-              <span
-                key={feelIndex}
-                className="animate-feel-in absolute inset-0 flex items-center justify-center font-normal italic text-accent"
-                style={{ fontFamily: `'${currentFont}', cursive, serif` }}
-              >
-                feel
-                <svg
-                  className="absolute left-0 top-[92%] w-full text-accent"
-                  height="14"
-                  viewBox="0 0 220 14"
-                  fill="none"
-                  preserveAspectRatio="none"
-                  aria-hidden
-                >
-                  <path
-                    d="M3 9.5C44 3.5 168 1.5 217 7.5"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
+            on{" "}
+            {/* Cycling platform name — key remount triggers blur-in + font switch */}
+            <span
+              key={platformIndex}
+              className="animate-platform-in inline-block"
+              style={{
+                color: currentPlatform.color,
+                fontFamily: `'${currentPlatform.font}', var(--font-display)`,
+                fontSize: `${currentPlatform.scale}em`,
+                letterSpacing: `${currentPlatform.spacing}em`,
+                lineHeight: 1,
+              }}
+            >
+              {currentPlatform.name}
             </span>
-            right.
           </span>
         </span>
       </h1>
@@ -178,7 +148,7 @@ export default function Hero() {
         data-hero-meta
         className="group absolute bottom-10 left-6 flex items-center gap-3 text-sm font-medium text-bone-dim transition-colors hover:text-bone md:left-12"
       >
-        <span className="grid h-10 w-10 place-items-center rounded-full border border-line transition-colors group-hover:border-accent group-hover:text-accent">
+        <span className="grid h-10 w-10 place-items-center rounded-full border-2 border-line bg-accent/5 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white">
           <span className="animate-bounce">↓</span>
         </span>
         Scroll to explore

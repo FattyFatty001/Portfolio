@@ -99,7 +99,7 @@ export default function Marquee({
               loading="lazy"
               className={`h-full w-full object-cover transition duration-500 ease-out ${
                 color
-                  ? "[filter:saturate(var(--saturate-base,1))_brightness(0.9)] group-hover:[filter:saturate(1)_brightness(1)] opacity-20 group-hover:opacity-100"
+                  ? "[filter:saturate(var(--saturate-base,1))_brightness(0.9)] group-hover:[filter:saturate(1)_brightness(1)] opacity-80 group-hover:opacity-100"
                   : "grayscale"
               }`}
             />
@@ -125,10 +125,10 @@ export default function Marquee({
     return (
       <div
         aria-hidden
-        className="relative w-full overflow-hidden border-y py-8 md:py-10"
+        className="relative z-10 w-full overflow-hidden border-y-2 py-10 md:py-12"
         style={{
           borderColor: tint ?? "var(--color-line)",
-          backgroundColor: tint ? `${tint}0d` : undefined,
+          backgroundColor: tint ? `${tint}22` : "color-mix(in srgb, var(--color-accent) 12%, transparent)",
         }}
       >
         {row}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Fraunces } from "next/font/google";
+import { Manrope, Fraunces, Fredoka } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
@@ -15,6 +15,13 @@ const serif = Fraunces({
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-display-serif",
+  display: "swap",
+});
+
+const display = Fredoka({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -34,7 +41,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${grotesk.variable} ${serif.variable}`}>
+    <html lang="en" className={`${grotesk.variable} ${serif.variable} ${display.variable}`}>
       <body className="canvas">
         <Cursor />
         <SmoothScroll>{children}</SmoothScroll>

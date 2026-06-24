@@ -38,24 +38,38 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={root} className="px-6 pt-40 pb-24 md:px-12 md:pt-56 md:pb-36">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
+    <section id="about" ref={root} className="relative px-6 pt-40 pb-24 md:px-12 md:pt-56 md:pb-36">
+      {/* OLIPOP-style color-blocked background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -skew-y-2 origin-top-left"
+        style={{
+          background: "linear-gradient(180deg, var(--color-accent) 0%, var(--color-accent) 100%)",
+          opacity: 0.04,
+        }}
+      />
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
         <div className="relative mx-auto w-56 shrink-0 md:w-72">
-          <div className="absolute -inset-3 -rotate-6 rounded-[2.2rem] bg-grape/20" />
-          <div className="absolute -inset-3 rotate-6 rounded-[2.2rem] bg-sun/30" />
+          <div className="absolute -inset-4 -rotate-6 rounded-[2.5rem] bg-grape/25 shadow-lg" />
+          <div className="absolute -inset-4 rotate-6 rounded-[2.5rem] bg-sun/35" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/portrait-warm.webp"
             alt="Matt Pearson"
-            className="relative aspect-square w-full rounded-[1.9rem] object-cover shadow-lg"
+            className="relative aspect-square w-full rounded-[2rem] object-cover shadow-[0_20px_50px_-15px_rgba(61,32,20,0.35)] ring-2 ring-white/50"
           />
         </div>
 
         <div>
-          <p className="mb-6 inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.16em] text-accent">
+          <p className="mb-6 inline-flex items-center gap-2.5 rounded-full border-2 border-accent/30 bg-accent/5 px-4 py-1.5 text-sm font-bold uppercase tracking-[0.16em] text-accent">
             <span className="h-2.5 w-2.5 rounded-full bg-accent" />
             About
           </p>
+          <h2 className="mb-6 text-fluid-md font-bold font-display">
+            Philosophy &amp;{" "}
+            <span className="font-display italic text-accent">craft</span>
+          </h2>
           <p className="text-fluid-sm font-medium">
             {statement.split(" ").map((word, i) => (
               <span key={i} data-word className="inline-block">

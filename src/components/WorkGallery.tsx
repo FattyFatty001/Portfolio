@@ -98,7 +98,7 @@ export default function WorkGallery({ images, title, color }: Props) {
             data-cursor
             onClick={() => setOpen(i)}
             style={{ transitionDelay: `${(i % 2) * 70}ms` }}
-            className="group block w-full overflow-hidden rounded-2xl border border-line bg-ink-soft text-left shadow-[0_18px_45px_-30px_rgba(36,31,26,0.5)]"
+            className="group block w-full overflow-hidden rounded-2xl border-2 border-line bg-ink-soft text-left shadow-[0_8px_30px_-15px_rgba(61,32,20,0.15)] transition-all duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:shadow-[0_18px_50px_-15px_rgba(61,32,20,0.25)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -124,7 +124,7 @@ export default function WorkGallery({ images, title, color }: Props) {
             onClick={close}
             data-cursor
             aria-label="Close"
-            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border border-line bg-ink-soft text-xl text-bone transition-colors hover:text-accent"
+            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border-2 border-line bg-ink-soft text-xl font-bold text-bone transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5"
           >
             ✕
           </button>
@@ -138,7 +138,7 @@ export default function WorkGallery({ images, title, color }: Props) {
               }}
               data-cursor
               aria-label="Previous"
-              className="absolute left-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-line bg-ink-soft text-2xl text-bone transition-colors hover:text-accent md:left-8"
+              className="absolute left-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border-2 border-line bg-ink-soft text-2xl font-bold text-bone transition-all duration-300 hover:border-accent hover:text-accent md:left-8"
             >
               ‹
             </button>
@@ -161,7 +161,7 @@ export default function WorkGallery({ images, title, color }: Props) {
               }}
               data-cursor
               aria-label="Next"
-              className="absolute right-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-line bg-ink-soft text-2xl text-bone transition-colors hover:text-accent md:right-8"
+              className="absolute right-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border-2 border-line bg-ink-soft text-2xl font-bold text-bone transition-all duration-300 hover:border-accent hover:text-accent md:right-8"
             >
               ›
             </button>

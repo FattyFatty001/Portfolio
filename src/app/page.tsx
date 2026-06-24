@@ -15,14 +15,22 @@ export default function Home() {
       <Nav />
       <main className="relative z-10">
         <Hero />
+
+        {/* Work section with angled backdrop marquees */}
         <div className="relative pb-16 md:pb-28">
           <Marquee angle={10} top="22%" reverse tint={c1} />
           <Marquee angle={-10} top="52%" tint={c2} />
           <Marquee angle={10} top="82%" reverse tint={c3} />
           <Work />
         </div>
-        <Marquee inline color angle={0} size="smplus" saturate={0} reverse />
+
+        {/* Game cover marquee — OLIPOP-style color-blocked band */}
+        <Marquee inline color angle={0} size="smplus" saturate={0.15} reverse />
+
+        {/* About section */}
         <About />
+
+        {/* Footer */}
         <Footer />
       </main>
     </>
